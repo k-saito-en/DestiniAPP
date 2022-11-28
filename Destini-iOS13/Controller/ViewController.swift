@@ -14,8 +14,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var choice1Button: UIButton!
     @IBOutlet weak var choice2Button: UIButton!
     
+    let example = StoryBrain()
+    
+    @IBAction func choiceMade(_ sender: UIButton) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //せっかくインスタンス化したのだから、格納した変数名義で呼び出さなければならなかった。
+        storyLabel.text = example.getStorytext()
 
     }
 
