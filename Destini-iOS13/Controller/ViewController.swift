@@ -14,19 +14,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var choice1Button: UIButton!
     @IBOutlet weak var choice2Button: UIButton!
     
-    let example = StoryBrain()
-    
-    @IBAction func choiceMade(_ sender: UIButton) {
-    }
+    var storyBrain = StoryBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //せっかくインスタンス化したのだから、格納した変数名義で呼び出さなければならなかった。
-        storyLabel.text = example.getStorytext()
+        updateUI()
 
     }
 
-
+    @IBAction func choiceMade(_ sender: UIButton) {
+        
+        storyBrain.nextStory(userChoice: sender.currentTitle!)
+        
+        updateUI()
+     
+    }
+    
+    func updateUI() {
+        storyLabel.text = storyBrain.getStoryTitle()
+        //UIButtonのタイトル（表示）を変えるメソッド　for: stateでタイトルを管理できる
+        choice1Button.setTitle(storyBrain.getChoice1(), for: .normal)
+        choice2Button.setTitle(storyBrain.getChoice2(), for: .normal)
+    }
+    
 }
 
